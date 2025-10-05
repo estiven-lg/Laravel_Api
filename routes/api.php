@@ -1,7 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ClienteController;
 
-Route::get('/ping', function () {
-    return response()->json(['mensaje' => 'API funcionando']);
-});
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+Route::apiResource('clientes', ClienteController::class);
